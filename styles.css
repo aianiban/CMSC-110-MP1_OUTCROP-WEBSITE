@@ -3,12 +3,10 @@
   font-family: Verdana (sans-serif);
   p, li{
   line-height: 1.5;
-  font-family: Verdana (sans-serif);
 }
   text-indent: 25px;
   }
   h4 {
-  font-family: Raleway;
   }
   ul, li {
   line-height: 1.5;
@@ -17,23 +15,19 @@
   }
    h1 {
   line-height: 0;
-  font-family: Radikal;
   font-style: bold;
   font-size: 40px;
   }
    .headline {
-  font-family: Radikal;
   font-style: bold;
   font-size: 30px;
   }
   .byline {
-  font-family: Raleway;
   font-style: italic;
   font-size: 20px;
   }
   h5 {
   line-height: 0;
-  font-family: Raleway;
   font-style: italic;
   }
 body {
