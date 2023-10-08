@@ -1,0 +1,749 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CS110_MP1_ANIBAN</title>
+</head>
+<style>
+* {
+  box-sizing: border-box;
+  font-family: Radikal;
+}
+  p, li{
+  line-height: 1.5;
+  font-family: Raleway;
+  text-indent: 25px;
+  }
+  h4 {
+  font-family: Raleway;
+  }
+  ul, li {
+  line-height: 1.5;
+  text-indent: 0px;
+  list-style-type: square;
+  }
+   h1 {
+  line-height: 0;
+  font-family: Radikal;
+  font-style: bold;
+  font-size: 40px;
+  }
+  .byline {
+  font-family: Raleway;
+  font-style: italic;
+  font-size: 20px;
+  }
+  h5 {
+  line-height: 0;
+  font-family: Raleway;
+  font-style: italic;
+  }
+body {
+  font-family: Arial;
+  padding: 10px;
+  background: #f1f1f1;
+}
+
+/* Header/Blog Title */
+.header {
+  text-align: center;
+  background: #dddddd;
+}
+
+/* Style the top navigation bar */
+.topnav {
+  overflow: hidden;
+  background-color: #4A0404;
+}
+
+/* Style the topnav links */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change color on hover */
+.topnav a:hover {
+  background-color: #dddddd;
+  color: #000000;
+}
+
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.leftcolumn {   
+  float: left;
+  width: 75%;
+}
+
+/* Right column */
+.rightcolumn {
+  float: left;
+  width: 25%;
+  background-color: #f1f1f1;
+  padding-left: 20px;
+}
+
+/* Fake image */
+.fakeimg {
+  background-color: #4A0404 ;
+  width: 100%;
+  padding: 20px;
+}
+
+/* Add a card effect for articles */
+.card {
+  background-color: white;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+/* Icons */
+.icon-right {
+  width: 3%;
+  float: right;
+  padding: 5px;
+  margin: 10 px;
+}
+.icon-left {
+  width: 3%;
+  float: left;
+  padding: 5px;
+  margin: 10 px;
+}
+/* Footer */
+.footer {
+  line-height: 2.5;
+  color: white;
+  height: 60px;
+  padding: 10px;
+  background: #4A0404;
+  margin-top: 20px;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+  .leftcolumn, .rightcolumn {   
+    width: 100%;
+    padding: 0;
+  }
+}
+
+/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+@media screen and (max-width: 400px) {
+  .topnav a {
+    float: none;
+    width: 100%;
+  }
+}
+
+/* Lightbox Code */
+
+.row > .column {
+  padding: 0 8px;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.column {
+  float: left;
+  width: 25%;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: black;
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  width: 90%;
+  max-width: 1200px;
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  position: absolute;
+  top: 10px;
+  right: 25px;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #999;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.mySlides {
+  display: none;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+/* Next & previous buttons */
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -50px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+img {
+  margin-bottom: -4px;
+}
+
+.caption-container {
+  text-align: center;
+  background-color: black;
+  padding: 2px 16px;
+  color: white;
+}
+
+.demo {
+  opacity: 0.6;
+}
+
+.active,
+.demo:hover {
+  opacity: 1;
+}
+
+img.hover-shadow {
+  transition: 0.3s;
+}
+
+.hover-shadow:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+</style>
+</head>
+<body>
+
+<div class="header">
+  <a href="https://www.facebook.com/UPBaguioOutcrop/"><img src="IMAGES/blacklogo.png" style="width:50%;" alt="OUTCROP LOGO"></a>
+</div>
+
+<div class="topnav">
+  <a href="index.html">Home</a>
+  <a href="news.html">News</a>
+  <a href="features.html">Features</a>
+  <a href="culture.html">Culture</a>
+  <a href="editorial.html">Editorial</a>
+  <a href="photos.html">Photos</a>
+</div>
+
+<div class="row">
+  <div class="leftcolumn">
+    <div class="card">
+<h2  id="jeepney" style="text-align:center">𝗝𝗲𝗲𝗽𝗻𝗲𝘆 𝗱𝗿𝗶𝘃𝗲𝗿𝘀, 𝗼𝗽𝗲𝗿𝗮𝘁𝗼𝗿𝘀 𝗵𝗼𝗹𝗱 𝗮 𝘀𝘁𝗿𝗶𝗸𝗲 𝗮𝗴𝗮𝗶𝗻𝘀𝘁 𝗷𝗲𝗲𝗽𝗻𝗲𝘆 𝗽𝗵𝗮𝘀𝗲-𝗼𝘂𝘁</h2>
+      <p>About 400 jeepney drivers and operators of Baguio - Benguet participated in the nationwide transportation strike against Memorandum Circular 2019-013, which aims to phase-out old jeepney models by PUV modernization, September 30.</p><p>
+The protest, led by Pinagkaisang Samahan ng mga Tsuper at Operators Nationwide (PISTON), began with a march from Sunshine Park to Igorot Park, where different jeepney drivers' associations voiced out their concerns regarding the impending modernization and phase out to be implemented after nine months.</p><p>
+Josefino Bautista, Treasurer of BIPSIHODA, said that PUV Modernization is anti-poor. Should the phase out be executed, it would affect not only the jeepney drivers and operators but also citizens who commute daily as the modernization would entail a fare hike.</p><p>
+"Kaya ako tumututol sa sinasabi nila dahil tayo, bawat isang operator ay aalisan ng karapatan na magtrabaho dito sa sariling bayan na magbigay ng karangyaan at mababang pasahe sa mga mahihirap na ating kababayan," Bautista stated.</p><p>
+The program ended with a community dance as a call for action to stop the phase-out and PUV modernization.</p>
+      <h5>Words by Hannah Valiente</h5>
+      <h5>Photos by Reginald Flores & Jomay Del Rosario</h5>
+
+<div class="row">
+  <div class="column">
+    <img src="IMAGES/jeepney1.jpg" style="width:100%" onclick="openModal();currentSlide(1)" class="hover-shadow cursor">
+  </div>
+  <div class="column">
+    <img src="IMAGES/jeepney2.jpg" style="width:100%" onclick="openModal();currentSlide(2)" class="hover-shadow cursor">
+  </div>
+  <div class="column">
+    <img src="IMAGES/jeepney3.jpg" style="width:100%" onclick="openModal();currentSlide(3)" class="hover-shadow cursor">
+  </div>
+  <div class="column">
+    <img src="IMAGES/jeepney4.jpg" style="width:100%" onclick="openModal();currentSlide(4)" class="hover-shadow cursor">
+  </div>
+</div>
+
+<div id="myModal" class="modal">
+  <span class="close cursor" onclick="closeModal()">&times;</span>
+  <div class="modal-content">
+
+    <div class="mySlides">
+      <div class="numbertext">1 / 4</div>
+      <img src="IMAGES/jeepney1.jpg" style="width:100%">
+    </div>
+
+    <div class="mySlides">
+      <div class="numbertext">2 / 4</div>
+      <img src="IMAGES/jeepney2.jpg" style="width:100%">
+    </div>
+
+    <div class="mySlides">
+      <div class="numbertext">3 / 4</div>
+      <img src="IMAGES/jeepney3.jpg" style="width:100%">
+    </div>
+    
+    <div class="mySlides">
+      <div class="numbertext">4 / 4</div>
+      <img src="IMAGES/jeepney4.jpg" style="width:100%">
+    </div>
+    
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+    <div class="caption-container">
+      <p id="caption"></p>
+    </div>
+
+    <div class="column">
+      <img class="demo cursor" src="IMAGES/jeepney1.jpg" style="width:100%" onclick="currentSlide(1)" alt="Jeepney Strike 1">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="IMAGES/jeepney2.jpg" style="width:100%" onclick="currentSlide(2)" alt="Jeepney Strike 2">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="IMAGES/jeepney3.jpg" style="width:100%" onclick="currentSlide(3)" alt="Jeepney Strike 3">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="IMAGES/jeepney4.jpg" style="width:100%" onclick="currentSlide(4)" alt="Jeepney Strike 4">
+    </div>
+      </div>
+        </div>
+          </div>
+    
+    <div class="card">
+<h2 id="ml" style="text-align:center">𝗨𝗣𝗕, 𝗽𝗿𝗼𝗴𝗿𝗲𝘀𝘀𝗶𝘃𝗲 𝗼𝗿𝗴𝗮𝗻𝗶𝘇𝗮𝘁𝗶𝗼𝗻𝘀 𝗰𝗼𝗺𝗺𝗲𝗺𝗼𝗿𝗮𝘁𝗲 𝗠𝗮𝗿𝘁𝗶𝗮𝗹 𝗟𝗮𝘄</h2>
+      <p>In commemoration of the declaration of Martial Law 47 years ago, students of the University of the Philippines Baguio, along with progressive groups in Benguet, and citizens from different sectors protest on September 20 as they marched from UP Baguio to Igorot Park.</p><p>
+Students of UP Baguio started the event by conducting a snake rally within the campus, in line with the observance of the systemwide UP Day of Remembrance.</p><p>
+UP Rises Against Tyranny and Dictatorship - UP Baguio and its member organizations along with Tongtongan Ti Umili, Cordillera Peoples Alliance, and Cordillera Human Rights Alliance led the March for Justice and Democracy with the theme: "Laban Kabataan, Laban Amianan."
+Mikhaila Sarita, Anakbayan Metro Baguio Secretary-General, condemned the Martial Law that happened 47 years ago as well as the injustices happening in the current administration in the form of de facto martial law.</p><p>
+"Sa paggunita natin sa pagpataw ni Marcos ng Martial Law sa Pilipinas, ang panawagan natin ay hindi na never again. Dahil nandito na ang martial law, kitang kita natin dahil sa dami ng mga pinatay at kinulong dahil lamang sila ay lumalaban," she stated.</p><p>
+Meanwhile, Gabriel Siscar of UP RISE encouraged everyone, especially the youth, to be critical citizens and continue to battle against the evident injustices by the current administration.</p><p>
+Nico Ponce, Chairperson of UP Baguio University Student Council, also raised the significance of the youth's collective actions in condemning the de facto martial law.</p><p>
+"Walang mali sa ginagawa ng mga iskolar ng bayan. Makatwiran ang maghimagsik, makatwiran ang paglaban, ang estado ang dahilan kung bakit kami naririto ngayon," Ponce stated.</p><p>
+On the other hand, Julius Baquiran, Chairperson of Anakbayan Metro Baguio, highlighted in his statement our need to fight for our absolute democracy.</p><p>
+"Hangga't may patayan, hangga't may tiraniya, hangga't may pasismo, tuloy tuloy tayong maghihimagsik. Tuloy tuloy tayong lalaban at makikibaka," he said.</p><p>
+The program ended with the crowd chanting "Bayan, Bayan, Bayan Ko" led by Baquiran which signified the unity for justice and democracy.</p>
+      <h5>Words by Ria Javate & Jovelyn Cullado</h5>
+      <h5>Photos by Joseph Alcones & Gwen de Leon</h5>
+
+<div class="row">
+  <div class="column">
+    <img src="IMAGES/ml1.jpg" style="width:100%" onclick="openModal();currentSlide(1)" class="hover-shadow cursor">
+  </div>
+  <div class="column">
+    <img src="IMAGES/ml2.jpg" style="width:100%" onclick="openModal();currentSlide(2)" class="hover-shadow cursor">
+  </div>
+  <div class="column">
+    <img src="IMAGES/ml3.jpg" style="width:100%" onclick="openModal();currentSlide(3)" class="hover-shadow cursor">
+  </div>
+  <div class="column">
+    <img src="IMAGES/ml4.jpg" style="width:100%" onclick="openModal();currentSlide(4)" class="hover-shadow cursor">
+  </div>
+</div>
+
+<div id="myModal" class="modal">
+  <span class="close cursor" onclick="closeModal()">&times;</span>
+  <div class="modal-content">
+
+    <div class="mySlides">
+      <div class="numbertext">1 / 4</div>
+      <img src="IMAGES/ml1.jpg" style="width:100%">
+    </div>
+
+    <div class="mySlides">
+      <div class="numbertext">2 / 4</div>
+      <img src="IMAGES/ml2.jpg" style="width:100%">
+    </div>
+
+    <div class="mySlides">
+      <div class="numbertext">3 / 4</div>
+      <img src="IMAGES/ml3.jpg" style="width:100%">
+    </div>
+    
+    <div class="mySlides">
+      <div class="numbertext">4 / 4</div>
+      <img src="IMAGES/ml4.jpg" style="width:100%">
+    </div>
+    
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+    <div class="caption-container">
+      <p id="caption"></p>
+    </div>
+
+    <div class="column">
+      <img class="demo cursor" src="IMAGES/ml1.jpg" style="width:100%" onclick="currentSlide(1)" alt="ML Comme 1">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="IMAGES/ml2.jpg" style="width:100%" onclick="currentSlide(2)" alt="ML Comme 2">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="IMAGES/ml3.jpg" style="width:100%" onclick="currentSlide(3)" alt="ML Comme 3">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="IMAGES/ml4.jpg" style="width:100%" onclick="currentSlide(4)" alt="ML Comme 4">
+    </div>
+      </div>
+        </div>
+          </div>
+
+     <div class="card">
+<h2 style="text-align:center">Students hold a symbolic protest</h2>
+      <p>Students of the University of the Philippines Baguio linked arms in unity to form a human blockade as a symbolic protest action to defend the university against the proposed military and police intrusion in schools.</p><p>
+The students staged a protest at the Oblation Grounds in unison with the systemwide UP Day of Walkout declared by the Office of the Student Regent (OSR), August 20.</p><p>
+The protest called to stop the Mandatory Drug Testing in schools and Mandatory ROTC, and deny the Philippine National Police (PNP) Chief Oscar Albayalde’s recent call to review the UP-DND Accord to allow military presence in schools.</p><p>
+Emmanuel Ganancias of Anakbayan delivered a speech, condemning the rampant red-tagging of student leaders as members of the CPP-NPA.
+He also urged his fellow students to fight against the state fascism and tyranny under the current administration.</p><p>
+“Kaya naman bilang mga iskolar ng bayan, isang hamon na patuloy tayong lumaban dahil sa matagal na panahon ay napatunayang walang mali sa paglaban, may mali kaya tayo lumalaban," he said.</p>
+      <h5>Photos by Jomay Del Rosario</h5>
+
+<div class="row">
+  <div class="column">
+    <img src="IMAGES/defend1.jpg" style="width:100%" onclick="openModal();currentSlide(1)" class="hover-shadow cursor">
+  </div>
+  <div class="column">
+    <img src="IMAGES/defend2.jpg" style="width:100%" onclick="openModal();currentSlide(2)" class="hover-shadow cursor">
+  </div>
+  <div class="column">
+    <img src="IMAGES/defend3.jpg" style="width:100%" onclick="openModal();currentSlide(3)" class="hover-shadow cursor">
+  </div>
+  <div class="column">
+    <img src="IMAGES/defend4.jpg" style="width:100%" onclick="openModal();currentSlide(4)" class="hover-shadow cursor">
+  </div>
+</div>
+
+<div id="myModal" class="modal">
+  <span class="close cursor" onclick="closeModal()">&times;</span>
+  <div class="modal-content">
+
+    <div class="mySlides">
+      <div class="numbertext">1 / 4</div>
+      <img src="IMAGES/defend1.jpg" style="width:100%">
+    </div>
+
+    <div class="mySlides">
+      <div class="numbertext">2 / 4</div>
+      <img src="IMAGES/defend2.jpg" style="width:100%">
+    </div>
+
+    <div class="mySlides">
+      <div class="numbertext">3 / 4</div>
+      <img src="IMAGES/defend3.jpg" style="width:100%">
+    </div>
+    
+    <div class="mySlides">
+      <div class="numbertext">4 / 4</div>
+      <img src="IMAGES/defend4.jpg" style="width:100%">
+    </div>
+    
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+    <div class="caption-container">
+      <p id="caption"></p>
+    </div>
+
+    <div class="column">
+      <img class="demo cursor" src="IMAGES/defend1.jpg" style="width:100%" onclick="currentSlide(1)" alt="Defend UP 1">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="IMAGES/defend2.jpg" style="width:100%" onclick="currentSlide(2)" alt="Defend UP 2">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="IMAGES/defend3.jpg" style="width:100%" onclick="currentSlide(3)" alt="Defend UP 3">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="IMAGES/defend4.jpg" style="width:100%" onclick="currentSlide(4)" alt="Defend UP 4">
+    </div>
+      </div>
+        </div>
+          </div>
+ <div class="card">
+<h2 style="text-align:center">UPB Freshies nakiisa sa mga kilos-protesta</h2>
+
+<p>Nasubok ang pakikiisa ng 642 na mga bagong iskolar ng bayan ng Unibersidad ng Pilipinas Baguio (UPB) sa pagtindig laban sa mga isyung kinahaharap ng bayan sa sunod-sunod na mga kilos-protesta sa kanilang unang linggo sa unibersidad.</p><p>
+Sa naganap na Freshman Welcome Orientation sa bagong gawang Himnasyo Amianan noong ika-5 ng Agosto, pinangunahan ni Nationalist Corps Head Perine Agraviador ang lightning rally kung saan  hinamon niya ang mga freshman na tumindig para sa bayan.</p><p>
+Ilan sa mga itinampok na isyu ni Agraviador ay ang problema sa edukasyon tulad na lamang ng Commission on Higher Education (CHED) Memorandum Order No. 20 o ang pag-alis ng wika at panitikan bilang core courses sa kolehiyo.</p><p>
+Nabigyang diin din ang Memorandum Order No. 32 na naglalayong magtalaga ng mga dagdag na tauhan ng Armed Forces of the Philippines (AFP) sa Bicol, Samar, at Isla ng Negros upang bawasan ang bilang ng mga karahasan na di umano ay gawa ng mga “lawless groups.”</p><p>
+Kaugnay nito, naging malakas ang panawagan ng mga progresibong grupo at Konseho ng mag-aaral sa UPB sa mga bagong iskolar na makiisa sa mga kampanya laban sa mga isyu na kinahaharap ng masa. </p><p>
+Naglunsad din ng kilos-protesta sa kantina ng UPB sa unang araw ng mga bagong iskolar ng bayan bilang pakikiisa sa malawakang First Day Fight sa buong UP System upang sila ay himukin sa paglaban sa mga isyung kinakaharap ng bansa.</p><p>
+Dagdag pa rito, naging mainit din ang pagsalubong sa unang linggo ng mga bagong iskolar ng bayan sa UPB matapos ang insidente ng pagbaril sa paralegal volunteer ng Cordillera Human Rights Alliance (CHRA) at Provincial Human Rights Officer ng Ifugao na si Brandon Lee noong ika-6 ng Agosto.</p><p>
+Kaugnay nito, nag-organisa ng Indignation Rally ang mga progresibong grupo sa Cordillera upang kondenahin ang naging pag-atake kay Lee sa sarili nilang bahay.</p><p>
+“Sa una, kinilabutan ako dahil unang beses kong makakita ng mga kilos-protesta na laging binabalita ng mga midya pero simula ng dumalo ako sa EDs [Educational Discussions] at iba pa, doon ko nalaman na may mga ipinaglalaban pala ang UPB para sa masa na sa tingin ko ay ipaglalaban ko rin bilang bagong iskolar,” pahayag ni Bryan Dominic Agor, isa sa mga bagong iskolar ng bayan mula sa Kolehiyo ng Agham Panlipunan.</p>
+
+      <h5>Words by Kate Paulyn Tayco</h5>
+      <h5>Photos by Jomay Del Rosario</h5>
+
+<div class="row">
+  <div class="column">
+    <img src="IMAGES/welcome1.jpg" style="width:100%" onclick="openModal();currentSlide(1)" class="hover-shadow cursor">
+  </div>
+  <div class="column">
+    <img src="IMAGES/welcome2.jpg" style="width:100%" onclick="openModal();currentSlide(2)" class="hover-shadow cursor">
+  </div>
+  <div class="column">
+    <img src="IMAGES/welcome3.jpg" style="width:100%" onclick="openModal();currentSlide(3)" class="hover-shadow cursor">
+  </div>
+  <div class="column">
+    <img src="IMAGES/welcome4.jpg" style="width:100%" onclick="openModal();currentSlide(4)" class="hover-shadow cursor">
+  </div>
+</div>
+
+<div id="myModal" class="modal">
+  <span class="close cursor" onclick="closeModal()">&times;</span>
+  <div class="modal-content">
+
+    <div class="mySlides">
+      <div class="numbertext">1 / 4</div>
+      <img src="IMAGES/welcome1.jpg" style="width:100%">
+    </div>
+
+    <div class="mySlides">
+      <div class="numbertext">2 / 4</div>
+      <img src="IMAGES/welcome2.jpg" style="width:100%">
+    </div>
+
+    <div class="mySlides">
+      <div class="numbertext">3 / 4</div>
+      <img src="IMAGES/welcome3.jpg" style="width:100%">
+    </div>
+    
+    <div class="mySlides">
+      <div class="numbertext">4 / 4</div>
+      <img src="IMAGES/welcome4.jpg" style="width:100%">
+    </div>
+    
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+    <div class="caption-container">
+      <p id="caption"></p>
+    </div>
+
+    <div class="column">
+      <img class="demo cursor" src="IMAGES/welcome1.jpg" style="width:100%" onclick="currentSlide(1)" alt="Wecome Freshies 1">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="IMAGES/welcome2.jpg" style="width:100%" onclick="currentSlide(2)" alt="Wecome Freshies 2">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="IMAGES/welcome3.jpg" style="width:100%" onclick="currentSlide(3)" alt="Wecome Freshies 3">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="IMAGES/welcome4.jpg" style="width:100%" onclick="currentSlide(4)" alt="Wecome Freshies 4">
+    </div>
+      </div>
+        </div>
+          </div>
+     <div class="card">
+<h2 id="pride" style="text-align:center">Baguio celebrates Pride March</h2>
+      <p>Baguio City celebrates Pride March 2018 With the theme “This is Pride”, various LGBTQ+ organizations from Baguio-Benguet community came together to wave the rainbow flag and to celebrate the annual Pride March at Igorot Park, Baguio City on November 24, 2018.</p><p>
+
+        Pride March 2018 was participated by more or less 30 LGBTQ+ organizations and their allies which aimed to fight for the rights of LGBTQ+ community and to call for passing of bills that promote equality and protection of LGBTQ+ members like House Bill 4892 or the Sexual Orientation and Gender Identity and Expression (SOGIE) Equality Bill. </p><p>
+
+        SOGIE Equality Bill protects not just LGBTQ+ members but everyone from discriminatory acts such as denial of access to public services, including SOGIE as a criteria for hiring or dismissal of workers, refusing admission or expelling students in schools based on SOGIE, engaging in public speech which intends to shame or ridicule LGBTQ+ persons, harassment based on SOGIE and the likes. </p><p>
+
+        The event surfaced the tragic life of Jeffrey “Jennifer” Laude, a Filipino transwoman who had been killed by an U.S. Marine Lance Corporal Joseph Scott Pemberton last October 11, 2014. Pemberton murdered Laude in a motel in Olongapo City upon knowing that she was a transgender. </p><p>
+
+        In addition, LGBTQ+ groups also urge for the legalization of Same Sex Marriage in the Philippines. Nonetheless, this year’s Pride March did not only tackle LGBTQ+ issues but also other national issues that Filipino nation is facing. </p><p>
+
+        The event calls for action against the oppression of different marginalized groups—emphasizing that the struggle of the masses will never be apart from the struggles of the LGBTQ+ community. </p><p>
+
+        Spearheaded by Amianan Pride Council, the Pride March happened along Session Road, Public City Market, and Abanao Square showcasing to other people that Pride is also a protest. </p>
+
+      <h5>Words by Kate Paulyne Tayco</h5>
+      <h5>Photos by Shem Peter Acal & Jomariequeen Del Rosario</h5>
+
+<div class="row">
+  <div class="column">
+    <img src="IMAGES/pride1.jpg" style="width:100%" onclick="openModal();currentSlide(1)" class="hover-shadow cursor">
+  </div>
+  <div class="column">
+    <img src="IMAGES/pride2.jpg" style="width:100%" onclick="openModal();currentSlide(2)" class="hover-shadow cursor">
+  </div>
+  <div class="column">
+    <img src="IMAGES/pride3.jpg" style="width:100%" onclick="openModal();currentSlide(3)" class="hover-shadow cursor">
+  </div>
+  <div class="column">
+    <img src="IMAGES/pride4.jpg" style="width:100%" onclick="openModal();currentSlide(4)" class="hover-shadow cursor">
+  </div>
+</div>
+
+<div id="myModal" class="modal">
+  <span class="close cursor" onclick="closeModal()">&times;</span>
+  <div class="modal-content">
+
+    <div class="mySlides">
+      <div class="numbertext">1 / 4</div>
+      <img src="IMAGES/pride1.jpg" style="width:100%">
+    </div>
+
+    <div class="mySlides">
+      <div class="numbertext">2 / 4</div>
+      <img src="IMAGES/pride2.jpg" style="width:100%">
+    </div>
+
+    <div class="mySlides">
+      <div class="numbertext">3 / 4</div>
+      <img src="IMAGES/pride3.jpg" style="width:100%">
+    </div>
+    
+    <div class="mySlides">
+      <div class="numbertext">4 / 4</div>
+      <img src="IMAGES/pride4.jpg" style="width:100%">
+    </div>
+    
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+    <div class="caption-container">
+      <p id="caption"></p>
+    </div>
+
+    <div class="column">
+      <img class="demo cursor" src="IMAGES/pride1.jpg" style="width:100%" onclick="currentSlide(1)" alt="PRIDE MARCH 1">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="IMAGES/pride2.jpg" style="width:100%" onclick="currentSlide(2)" alt="PRIDE MARCH 2">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="IMAGES/pride3.jpg" style="width:100%" onclick="currentSlide(3)" alt="PRIDE MARCH 3">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="IMAGES/pride4.jpg" style="width:100%" onclick="currentSlide(4)" alt="PRIDE MARCH 4">
+    </div>
+      </div>
+        </div>
+          </div>
+            </div>
+
+  <div class="rightcolumn">
+    <div class="card">
+      <div><a href="https://www.facebook.com/UPBaguioOutcrop/"><img src="IMAGES/icon.png" style="width: 70%;display:block;margin-left: auto;margin-right: auto;" alt="OUTCROP LOGO"></a></div>
+      <p>Ang Outcrop ay opisyal na pahayagan ng mga mag-aaral ng Unibersidad ng Pilipinas Baguio. Mapagpalayang Kaisipan sa Malayang Pahayagan.</p>
+    </div>
+    <div class="card">
+<h3>Popular Posts</h3>
+      <div><a href="editorial.html#inflation"><img src="IMAGES/inflation.png" style="width:100%;" alt="Popular Post 1"></div></a>
+      <div><a href="photos.html#ml"><img src="IMAGES/ml1.jpg" style="width:100%;" alt="Popular Post 2"></div></a>
+      <div><a href="editorial.html#macr"><img src="IMAGES/macr.png" style="width:100%;" alt="Popular Post 1"></div></a>
+      <div><a href="photos.html#jeepney"><img src="IMAGES/jeepney1.jpg" style="width:100%;" alt="Popular Post 3"></div></a>
+      <div><a href="features.html#comics"><img src="IMAGES/comics1.jpg" style="width:100%;" alt="Popular Post 1"></div></a>
+      <div><a href="photos.html#pride"><img src="IMAGES/pride1.jpg" style="width:100%;" alt="Popular Post 4"></div></a>
+    </div>
+    <div class="card">
+      <h3>Alliances</h3>
+      <p>Outcrop is an alliance member of the College Editors Guild of the Philippines (CEGP) and the University of the Philippines (UP) Solidaridad.</p>
+      <div><a href="https://www.facebook.com/CEGPNationalOffice/"><img src="IMAGES/cegp.png" style="width:50%;" alt="CEGP"></a><a href="https://www.facebook.com/upsolidaridad/"><img src="IMAGES/soli.png" style="width:50%;" alt="UP Solidaridad"></a></div>
+    </div>
+  </div>
+</div>
+<div class="footer">
+       <a href="#top"><img class="icon-left" src="IMAGES/top.png" alt="Issuu link">Back to top</a>
+       <a href="https://issuu.com/upboutcrop1"><img class="icon-right" src="IMAGES/issuu.png" alt="Issuu link"></a>
+       <a href="https://twitter.com/UPB_Outcrop"><img class="icon-right" src="IMAGES/twitter.png" alt="Twitter link"></a>
+       <a href="https://www.facebook.com/UPBaguioOutcrop/"><img class="icon-right" src="IMAGES/facebook.png" alt="Facebook link"></a>
+</div>
+
+
+<script>
+function openModal() {
+  document.getElementById("myModal").style.display = "block";
+}
+
+function closeModal() {
+  document.getElementById("myModal").style.display = "none";
+}
+
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("demo");
+  var captionText = document.getElementById("caption");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+  captionText.innerHTML = dots[slideIndex-1].alt;
+}
+</script>
+</body>
+</html>
